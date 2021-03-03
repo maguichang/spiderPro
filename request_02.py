@@ -17,14 +17,16 @@ if __name__ == "__main__":
         AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36 FS'
     }
     # 3、post请求参数处理
+    word = input("enter a word:")
     data = {
-        'kw': 'dog'
+        'kw': word
     }
     # 4、请求发送
     response = requests.post(url=post_url, data=data, headers=headers)
     # 5、获取响应数据：json() 方法返回的是obj（如果确认返回是json数据类型）
     dic_obj = response.json()
     # 6、持久化数据
-    fp = open('./dog.json', 'w', encoding='utf-8')
+    file_name = word+'.json'
+    fp = open(file_name, 'w', encoding='utf-8')
     json.dump(dic_obj, fp=fp, ensure_ascii=False)
     print("over!!!")
